@@ -35,7 +35,7 @@
 			<id>test</id>
 			<activation>
 				<file>
-					<exists>test/*</exists>
+					<exists>${basedir}/test</exists>
 				</file>
 			</activation>
 			<build>
@@ -65,17 +65,51 @@
 				</plugins>
 			</build>
 		</profile>
+		<profile>
+			<id>test-maven-layout</id>
+			<activation>
+				<file>
+					<exists>${basedir}/src/test/java</exists>
+				</file>
+			</activation>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-jar-plugin</artifactId>
+						<executions>
+							<execution>
+								<goals>
+									<goal>test-jar</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+					<plugin>
+						<artifactId>maven-source-plugin</artifactId>
+						<executions>
+							<execution>
+								<id>attach-sources</id>
+								<goals>
+									<goal>test-jar-no-fork</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>		
 	</profiles>
 
 	<build>
-		<sourceDirectory>src</sourceDirectory>
-		<testSourceDirectory>test</testSourceDirectory>
+		<sourceDirectory>${basedir}/src</sourceDirectory>
+		<testSourceDirectory>${basedir}/test</testSourceDirectory>
 		<resources>
 			<resource>
 				<directory>${basedir}</directory>
 				<targetPath>META-INF</targetPath>
 				<includes>
-					<include>LICENSE.txt</include>
+					<include>LICENSE*</include>
 				</includes>
 			</resource>
 		</resources>
@@ -84,7 +118,7 @@
 				<directory>${basedir}</directory>
 				<targetPath>META-INF</targetPath>
 				<includes>
-					<include>LICENSE.txt</include>
+					<include>LICENSE*</include>
 				</includes>
 			</testResource>
 		</testResources>
