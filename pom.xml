@@ -10,6 +10,12 @@
 	<url>https://github.com/calimero-project/calimero.parent</url>
 	<inceptionYear>2006</inceptionYear>
 
+	<licenses>
+		<license>
+			<name>GNU General Public License, version 2, with the Classpath Exception</name>
+		</license>
+	</licenses>
+
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<packager>Calimero Project</packager>
