@@ -100,7 +100,7 @@
             </build>
         </profile>
         <profile>
-            <!-- release-profile is inheretied from super pom and is activated by plugin like release or jgitflow -->
+            <!-- release-profile is inherited from super pom and is activated by plugin like release or jgitflow -->
             <!-- can be activated manually with -Prelease-profile -->
             <id>release-profile</id>
             <build>
@@ -229,7 +229,7 @@
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>4.11</version>
+            <version>4.12</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
