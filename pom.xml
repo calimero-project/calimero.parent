@@ -99,6 +99,30 @@
 				</plugins>
 			</build>
 		</profile>
+		<profile>
+			<!-- release-profile is inherited from super pom and is activated by plugins 
+				like release or jgitflow -->
+			<!-- can be activated manually with -Prelease-profile -->
+			<id>release-profile</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-gpg-plugin</artifactId>
+						<version>1.5</version>
+						<executions>
+							<execution>
+								<id>sign-artifacts</id>
+								<phase>verify</phase>
+								<goals>
+									<goal>sign</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
 	</profiles>
 
 	<build>
@@ -196,20 +220,6 @@
 						<goals>
 							<goal>jar-no-fork</goal>
 							<!-- <goal>test-jar-no-fork</goal> -->
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-gpg-plugin</artifactId>
-				<version>1.5</version>
-				<executions>
-					<execution>
-						<id>sign-artifacts</id>
-						<phase>verify</phase>
-						<goals>
-							<goal>sign</goal>
 						</goals>
 					</execution>
 				</executions>
