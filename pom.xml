@@ -197,7 +197,6 @@
 				<version>2.10.3</version>
 				<configuration>
 					<overview>src/overview.html</overview>
-					<additionalparam>-Xdoclint:none</additionalparam>
 					<author>false</author>
 					<quiet>true</quiet>
 					<archive>
