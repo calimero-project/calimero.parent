@@ -102,8 +102,7 @@
 			</build>
 		</profile>
 		<profile>
-			<!-- release-profile is inherited from super pom and is activated by plugins 
-				like release or jgitflow -->
+			<!-- release-profile is inherited from super pom and is activated by plugins like release or jgitflow -->
 			<!-- can be activated manually with -Prelease-profile -->
 			<id>release-profile</id>
 			<build>
@@ -267,7 +266,7 @@
 				<artifactId>maven-javadoc-plugin</artifactId>
 				<version>2.10.3</version>
 				<configuration>
-					<links/>
+					<links />
 				</configuration>
 			</plugin>
 		</plugins>
