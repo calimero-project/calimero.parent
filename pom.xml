@@ -9,18 +9,18 @@
 	<description>Parent pom for Calimero modules</description>
 	<url>https://github.com/calimero-project/calimero.parent</url>
 	<inceptionYear>2006</inceptionYear>
-
 	<licenses>
 		<license>
 			<name>GNU General Public License, version 2, with the Classpath Exception</name>
 		</license>
 	</licenses>
-
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<packager>Calimero Project</packager>
-		<!-- Counting bug in surefire-junit5-5.0.0-ALPHA, use latest snapshot -->
-		<junit.gen5.version>5.0.0-SNAPSHOT</junit.gen5.version>
+		<slf4j.version>1.7.21</slf4j.version>
+		<junit.jupiter.version>5.0.0-SNAPSHOT</junit.jupiter.version>
+		<junit.vintage.version>4.12.0-SNAPSHOT</junit.vintage.version>
+		<junit.platform.version>1.0.0-SNAPSHOT</junit.platform.version>
 	</properties>
 	<scm>
 		<url>https://github.com/calimero-project/calimero.parent.git</url>
@@ -31,7 +31,6 @@
 			<email>b.malinowsky@gmail.com</email>
 		</developer>
 	</developers>
-
 	<profiles>
 		<profile>
 			<id>test</id>
@@ -125,7 +124,6 @@
 			</build>
 		</profile>
 	</profiles>
-
 	<build>
 		<sourceDirectory>${basedir}/src</sourceDirectory>
 		<testSourceDirectory>${basedir}/test</testSourceDirectory>
@@ -241,9 +239,9 @@
 				<version>2.19.1</version>
 				<dependencies>
 					<dependency>
-						<groupId>org.junit</groupId>
-						<artifactId>surefire-junit5</artifactId>
-						<version>${junit.gen5.version}</version>
+						<groupId>org.junit.platform</groupId>
+						<artifactId>junit-platform-surefire-provider</artifactId>
+						<version>${junit.platform.version}</version>
 					</dependency>
 				</dependencies>
 			</plugin>
@@ -275,36 +273,30 @@
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
-			<version>1.7.18</version>
+			<version>${slf4j.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-simple</artifactId>
-			<version>1.7.18</version>
+			<version>${slf4j.version}</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>4.12</version>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-engine</artifactId>
+			<version>${junit.jupiter.version}</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
-			<groupId>org.junit</groupId>
-			<artifactId>junit5-api</artifactId>
-			<version>${junit.gen5.version}</version>
+			<groupId>org.junit.platform</groupId>
+			<artifactId>junit-platform-runner</artifactId>
+			<version>${junit.platform.version}</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
-			<groupId>org.junit</groupId>
-			<artifactId>junit5-engine</artifactId>
-			<version>${junit.gen5.version}</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.junit</groupId>
-			<artifactId>junit4-runner</artifactId>
-			<version>${junit.gen5.version}</version>
+			<groupId>org.junit.vintage</groupId>
+			<artifactId>junit-vintage-engine</artifactId>
+			<version>${junit.vintage.version}</version>
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
