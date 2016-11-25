@@ -1,0 +1,97 @@
+buildscript {
+	repositories {
+		mavenCentral()
+		maven { url 'https://oss.sonatype.org/content/repositories/snapshots' }
+	}
+	dependencies {
+		classpath 'org.junit.platform:junit-platform-gradle-plugin:1.0.0-SNAPSHOT'
+	}
+}
+
+plugins {
+	id 'com.github.ben-manes.versions' version '0.13.0'
+}
+
+repositories {
+	mavenCentral()
+	maven { url 'https://oss.sonatype.org/content/repositories/snapshots' }
+}
+
+allprojects { subproj ->
+	apply plugin: 'java'
+	apply plugin: 'maven'
+
+	group = 'com.github.calimero'
+	version = '2.4-SNAPSHOT'
+	def packager = 'Calimero Project'
+	def projectUrl = "https://github.com/calimero-project/${project.name}"
+
+	sourceCompatibility = 1.8
+	targetCompatibility = 1.8
+
+	task sourcesJar(type: Jar, dependsOn: classes) {
+		classifier = 'sources'
+		from sourceSets.main.allSource
+	}
+	
+	task javadocJar(type: Jar, dependsOn: javadoc) {
+		classifier = 'javadoc'
+		from javadoc.destinationDir
+	}
+	
+	artifacts {
+		archives sourcesJar
+		archives javadocJar
+	}
+
+	jar {
+//		from "LICENSE.txt"
+		manifest {
+			attributes 'Implementation-Title': "${project.name}",
+					   'Implementation-Version': version,
+					   'Built-By': "${packager}",
+					   'Url': "${projectUrl}"
+		}
+	}
+}
+
+subprojects {
+	apply plugin: 'org.junit.platform.gradle.plugin'
+
+	ext.junitJupiterVersion = '5.0.0-SNAPSHOT'
+	ext.junitPlatformVersion = '1.0.0-SNAPSHOT'
+
+	compileJava.options*.compilerArgs = [
+		'-Xlint:all',
+		'-Werror'
+	]
+
+	compileTestJava.options*.compilerArgs = [
+		'-Xlint:all',
+		'-Xlint:-try',
+	]
+
+	dependencies {
+		compile 'org.slf4j:slf4j-api:1.7.21'
+	
+		testCompile("org.junit.jupiter:junit-jupiter-api:${junitJupiterVersion}")
+		testCompile("org.junit.platform:junit-platform-runner:${junitPlatformVersion}")
+		testCompile 'junit:junit:4.12'
+		testRuntime("org.junit.jupiter:junit-jupiter-engine:${junitJupiterVersion}")
+		testRuntime 'org.junit.vintage:junit-vintage-engine:4.12.0-SNAPSHOT'
+	
+//		testRuntime 'org.slf4j:slf4j-simple:1.7.21'
+	}
+}
+
+sourceSets {
+	main {
+		java.srcDir 'src'
+		resources.srcDir 'resources'
+	}
+	test {
+		java.srcDirs = [ 'test' ]
+		file('build/classes/test').mkdirs()
+		runtimeClasspath = runtimeClasspath + files('build/classes/test')
+	}
+}
