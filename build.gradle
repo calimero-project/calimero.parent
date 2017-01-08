@@ -54,6 +54,10 @@ allprojects { proj ->
 					   'Url': "${projectUrl}"
 		}
 	}
+	
+    task wrapper(type: Wrapper) {
+        gradleVersion = '3.3'
+    }
 }
 
 subprojects {
