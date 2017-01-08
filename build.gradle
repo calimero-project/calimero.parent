@@ -76,6 +76,11 @@ subprojects {
 		'-Xlint:-try',
 	]
 
+	compileJava {
+		options.debugOptions.debugLevel = "source,lines" // { source, lines, vars } or "none"
+//		options.debug = false
+	}
+
 	dependencies {
 		compile 'org.slf4j:slf4j-api:1.7.21'
 	
