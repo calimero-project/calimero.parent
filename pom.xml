@@ -325,8 +325,7 @@
 			</releases>
 			<snapshots>
 				<enabled>true</enabled>
-				<!-- Do NOT cache JUnit 5 snapshot JARs. -->
-				<updatePolicy>always</updatePolicy>
+				<updatePolicy>interval:120</updatePolicy>
 			</snapshots>
 		</pluginRepository>
 	</pluginRepositories>
