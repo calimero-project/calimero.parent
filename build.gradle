@@ -82,7 +82,7 @@ subprojects {
 	}
 
 	dependencies {
-		compile 'org.slf4j:slf4j-api:1.7.21'
+		compile 'org.slf4j:slf4j-api:1.7.22'
 	
 		testCompile("org.junit.jupiter:junit-jupiter-api:${junitJupiterVersion}")
 		testCompile("org.junit.platform:junit-platform-runner:${junitPlatformVersion}")
@@ -90,7 +90,7 @@ subprojects {
 		testRuntime("org.junit.jupiter:junit-jupiter-engine:${junitJupiterVersion}")
 		testRuntime 'org.junit.vintage:junit-vintage-engine:4.12.0-SNAPSHOT'
 	
-//		testRuntime 'org.slf4j:slf4j-simple:1.7.21'
+//		testRuntime 'org.slf4j:slf4j-simple:1.7.22'
 	}
 }
 
