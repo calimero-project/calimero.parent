@@ -46,7 +46,7 @@ allprojects { proj ->
 	}
 
 	jar {
-//		from "LICENSE.txt"
+		from ('.') {  include 'LICENSE*' into 'META-INF' }
 		manifest {
 			attributes 'Implementation-Title': "${project.name}",
 					   'Implementation-Version': version,
@@ -65,6 +65,10 @@ subprojects {
 
 	ext.junitJupiterVersion = '5.0.0-SNAPSHOT'
 	ext.junitPlatformVersion = '1.0.0-SNAPSHOT'
+
+	junitPlatform {
+		details 'none' // 'tree'
+	}
 
 	compileJava.options*.compilerArgs = [
 		'-Xlint:all',
