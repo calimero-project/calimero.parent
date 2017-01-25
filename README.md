@@ -1,2 +1,2 @@
 # calimero.parent
-Contains the maven parent POM for Calimero modules
+Contains the Maven parent POM and Gradle multi-project setup for the Calimero repositories.
