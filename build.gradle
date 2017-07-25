@@ -9,7 +9,7 @@ buildscript {
 }
 
 plugins {
-	id 'com.github.ben-manes.versions' version '0.13.0'
+	id 'com.github.ben-manes.versions' version '0.15.0'
 }
 
 allprojects { proj ->
@@ -72,6 +72,7 @@ subprojects {
 
 	compileJava.options*.compilerArgs = [
 		'-Xlint:all',
+		'-Xlint:-options',
 		'-Werror'
 	]
 
@@ -93,8 +94,6 @@ subprojects {
 		testCompile 'junit:junit:4.12'
 		testRuntime("org.junit.jupiter:junit-jupiter-engine:${junitJupiterVersion}")
 		testRuntime 'org.junit.vintage:junit-vintage-engine:4.12.0-SNAPSHOT'
-	
-//		testRuntime 'org.slf4j:slf4j-simple:1.7.22'
 	}
 }
 
