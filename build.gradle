@@ -75,7 +75,7 @@ subprojects {
 	]
 
 	compileJava {
-		options.debugOptions.debugLevel = "source,lines" // { source, lines, vars } or "none"
+		options.debugOptions.debugLevel = "source,lines,vars" // { source, lines, vars } or "none"
 //		options.debug = false
 	}
 
