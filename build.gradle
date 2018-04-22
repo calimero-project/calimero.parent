@@ -79,6 +79,11 @@ subprojects {
 //		options.debug = false
 	}
 
+	javadoc {
+		options.encoding = 'UTF-8'
+		options.addBooleanOption('html5', true)
+	}
+
 	test {
 		useJUnitPlatform()
 		testLogging {
