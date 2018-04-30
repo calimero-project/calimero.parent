@@ -64,7 +64,7 @@ allprojects { proj ->
 subprojects {
 	apply plugin: 'com.github.spotbugs'
 	
-	ext.junitJupiterVersion = '5.2.0-SNAPSHOT'
+	ext.junitJupiterVersion = '5.2.0'
 
 	compileJava.options*.compilerArgs = [
 		'-Xlint:all',
