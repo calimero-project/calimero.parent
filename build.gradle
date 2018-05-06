@@ -6,7 +6,7 @@ buildscript {
 }
 
 plugins {
-	id 'com.github.ben-manes.versions' version '0.15.0'
+	id 'com.github.ben-manes.versions' version '0.17.0'
 	id "com.github.spotbugs" version "1.6.1"
 }
 
@@ -21,7 +21,7 @@ allprojects { proj ->
 	apply plugin: 'maven'
 
 	group = 'com.github.calimero'
-	version = '2.4-SNAPSHOT'
+	version = '2.4-rc1'
 	def packager = 'Calimero Project'
 	def projectUrl = "https://github.com/calimero-project/${project.name}"
 
