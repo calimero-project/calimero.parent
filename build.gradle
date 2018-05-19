@@ -2,6 +2,10 @@ buildscript {
 	repositories {
 		mavenCentral()
 		maven { url 'https://oss.sonatype.org/content/repositories/snapshots' }
+		jcenter()
+	}
+	dependencies {
+		classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.7.3'
 	}
 }
 
@@ -10,15 +14,21 @@ plugins {
 	id "com.github.spotbugs" version "1.6.1"
 }
 
+ext.desc = 'Calimero multi-project build'
+
 allprojects { proj ->
     repositories {
 		mavenLocal()
 		mavenCentral()
 		maven { url 'https://oss.sonatype.org/content/repositories/snapshots' }
+		jcenter()
     }
 
 	apply plugin: 'java-library'
-	apply plugin: 'maven'
+    apply plugin: 'maven-publish'
+    apply plugin: 'com.jfrog.bintray'
+
+	ext.desc = 'Calimero - KNX network library'
 
 	group = 'com.github.calimero'
 	version = '2.4-rc1'
@@ -34,11 +44,22 @@ allprojects { proj ->
 	task sourcesJar(type: Jar, dependsOn: classes) {
 		classifier = 'sources'
 		from sourceSets.main.allSource
+		from("${projectDir}") {
+            include 'LICENSE*'
+            into "META-INF"
+        }
+		from("${projectDir}") {
+		    include 'README.md', 'pom.xml', 'build.gradle', 'gradle*/**'
+        }
 	}
 
 	task javadocJar(type: Jar, dependsOn: javadoc) {
 		classifier = 'javadoc'
 		from javadoc.destinationDir
+		from("${projectDir}") {
+            include 'LICENSE*'
+            into "META-INF"
+        }
 	}
 
 	artifacts {
@@ -59,11 +80,65 @@ allprojects { proj ->
     task wrapper(type: Wrapper) {
 		gradleVersion = '4.7'
     }
+    
+    bintray {
+        user = project.hasProperty('bintray.user') ? project.property('bintray.user') : System.getenv('BINTRAY_USER')
+        key = project.hasProperty('bintray.key') ? project.property('bintray.key') : System.getenv('BINTRAY_KEY')
+        publications = ['mavenJava']
+        publish = false
+        pkg {
+            repo = 'calimero'
+            name = proj.name
+            desc = project.ext.desc
+            vcsUrl = "${projectUrl}.git"
+            version {
+                name = proj.version
+                desc = project.ext.desc + ' version ' + project.version
+                released  = new Date()
+            }
+        }
+    }
+
+    publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+            artifact sourcesJar {
+                classifier "sources"
+            }
+            artifact javadocJar {
+                classifier "javadoc"
+            }
+            if (project.tasks.findByName('testJar')) {
+                artifact testJar {
+                    classifier "tests"
+                }
+                artifact testSourcesJar {
+                    classifier "test-sources"
+                }
+            }
+            groupId group
+            artifactId proj.name == 'calimero.parent' ? 'calimero-parent' : proj.name
+            version proj.version
+            pom.withXml { provider ->
+                def builder = provider.asString()
+                builder.length = 0 // delete existing content
+                builder.append(file("pom.xml").text)
+                
+                if (project.name != 'calimero.parent') {
+                    def root = asNode()
+                    root.appendNode('groupId', group)
+                    root.appendNode('version', version)
+                }
+            }
+        }
+    }
+    }
 }
 
 subprojects {
 	apply plugin: 'com.github.spotbugs'
-	
+
 	ext.junitJupiterVersion = '5.2.0'
 
 	compileJava.options*.compilerArgs = [
