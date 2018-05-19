@@ -31,12 +31,12 @@ allprojects { proj ->
 	ext.desc = 'Calimero - KNX network library'
 
 	group = 'com.github.calimero'
-	version = '2.4-rc1'
+	version = '2.5-SNAPSHOT'
 	def packager = 'Calimero Project'
 	def projectUrl = "https://github.com/calimero-project/${project.name}"
 
-	sourceCompatibility = 1.8
-	targetCompatibility = 1.8
+	sourceCompatibility = 9
+	targetCompatibility = 9
 
 	compileJava.options.encoding = 'UTF-8'
 	compileTestJava.options.encoding = 'UTF-8'
