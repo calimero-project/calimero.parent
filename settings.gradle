@@ -19,3 +19,5 @@ project(':calimero-testnetwork').projectDir = new File('../calimero-testnetwork'
 project(':calimero-gui').projectDir = new File('../calimero-gui')
 project(':introduction').projectDir = new File('../introduction')
 project(':import-ets-xml').projectDir = new File('../import-ets-xml')
+
+enableFeaturePreview('STABLE_PUBLISHING')

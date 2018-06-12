@@ -5,23 +5,23 @@ buildscript {
 		jcenter()
 	}
 	dependencies {
-		classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.7.3'
+		classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.1'
 	}
 }
 
 plugins {
 	id 'com.github.ben-manes.versions' version '0.17.0'
-	id "com.github.spotbugs" version "1.6.1"
+	id "com.github.spotbugs" version "1.6.2"
 }
 
 ext.desc = 'Calimero multi-project build'
 
 allprojects { proj ->
     repositories {
+		jcenter()
 		mavenLocal()
 		mavenCentral()
 		maven { url 'https://oss.sonatype.org/content/repositories/snapshots' }
-		jcenter()
     }
 
 	apply plugin: 'java-library'
@@ -77,19 +77,20 @@ allprojects { proj ->
 		}
 	}
 
-    task wrapper(type: Wrapper) {
-		gradleVersion = '4.7'
+    wrapper {
+		gradleVersion = '4.8'
     }
     
     bintray {
         user = project.hasProperty('bintray.user') ? project.property('bintray.user') : System.getenv('BINTRAY_USER')
         key = project.hasProperty('bintray.key') ? project.property('bintray.key') : System.getenv('BINTRAY_KEY')
-        publications = ['mavenJava']
+        publications = ['maven']
         publish = false
         pkg {
             repo = 'calimero'
             name = proj.name
-            desc = project.ext.desc
+            desc = proj.ext.desc
+            licenses = ['GPL-2.0+CE']
             vcsUrl = "${projectUrl}.git"
             version {
                 name = proj.version
@@ -100,8 +101,8 @@ allprojects { proj ->
     }
 
     publishing {
-    publications {
-        mavenJava(MavenPublication) {
+      publications {
+        maven(MavenPublication) {
             from components.java
             artifact sourcesJar {
                 classifier "sources"
@@ -117,10 +118,33 @@ allprojects { proj ->
                     classifier "test-sources"
                 }
             }
-            groupId group
             artifactId proj.name == 'calimero.parent' ? 'calimero-parent' : proj.name
-            version proj.version
-            pom.withXml { provider ->
+            
+            if (proj.name == 'calimero-testnetwork') {
+              pom {
+                name = 'Calimero test network'
+                description = 'Test network with KNXnet/IP server and virtual subnet'
+                url = 'https://github.com/calimero-project/calimero-testnetwork'
+                licenses {
+                  license {
+                    name = "GNU General Public License, version 2, with the Classpath Exception"
+                    distribution = "repo"
+                  }
+                }
+                developers {
+                  developer {
+                    name = "Boris Malinowsky"
+                    email = "b.malinowsky@gmail.com"
+                  }
+                }
+              }
+              pom.withXml {
+                  asNode().appendNode('properties').appendNode('project.build.sourceEncoding', 'UTF-8')
+              }
+
+            } else {             
+
+              pom.withXml { provider ->
                 def builder = provider.asString()
                 builder.length = 0 // delete existing content
                 builder.append(file("pom.xml").text)
@@ -130,9 +154,23 @@ allprojects { proj ->
                     root.appendNode('groupId', group)
                     root.appendNode('version', version)
                 }
+              }
+
             }
         }
-    }
+      }
+      repositories {
+          maven {
+              credentials { 
+                  username findProperty('mavenUser')
+                  password findProperty('mavenPassword')
+              }
+
+              def releasesRepoUrl = "https://oss.sonatype.org/service/local/staging/deploy/maven2"
+              def snapshotsRepoUrl = "https://oss.sonatype.org/content/repositories/snapshots"
+              url version.endsWith("SNAPSHOT") ? snapshotsRepoUrl : releasesRepoUrl
+          }
+      }
     }
 }
 
