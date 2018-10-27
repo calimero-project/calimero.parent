@@ -78,7 +78,7 @@ allprojects { proj ->
 	}
 
     wrapper {
-		gradleVersion = '4.8'
+		gradleVersion = '4.10.2'
     }
     
     bintray {
@@ -88,7 +88,7 @@ allprojects { proj ->
         publish = false
         pkg {
             repo = 'calimero'
-            name = proj.name
+            name = proj.name == 'calimero.parent' ? 'calimero-parent' : proj.name
             desc = proj.ext.desc
             licenses = ['GPL-2.0+CE']
             vcsUrl = "${projectUrl}.git"
@@ -103,12 +103,14 @@ allprojects { proj ->
     publishing {
       publications {
         maven(MavenPublication) {
-            from components.java
-            artifact sourcesJar {
+            if (project.name != 'calimero.parent') {
+              from components.java
+              artifact sourcesJar {
                 classifier "sources"
-            }
-            artifact javadocJar {
+              }
+              artifact javadocJar {
                 classifier "javadoc"
+              }
             }
             if (project.tasks.findByName('testJar')) {
                 artifact testJar {
@@ -191,7 +193,7 @@ subprojects {
 	]
 
 	compileJava {
-		options.debugOptions.debugLevel = "source,lines,vars" // { source, lines, vars } or "none"
+		options.debugOptions.debugLevel = "source,lines" // { source, lines, vars } or "none"
 //		options.debug = false
 	}
 
