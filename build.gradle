@@ -78,7 +78,7 @@ allprojects { proj ->
 	}
 
     wrapper {
-		gradleVersion = '4.8'
+		gradleVersion = '5.0-rc-1'
     }
     
     bintray {
@@ -86,9 +86,10 @@ allprojects { proj ->
         key = project.hasProperty('bintray.key') ? project.property('bintray.key') : System.getenv('BINTRAY_KEY')
         publications = ['maven']
         publish = false
+        dryRun = false
         pkg {
             repo = 'calimero'
-            name = proj.name
+            name = proj.name == 'calimero.parent' ? 'calimero-parent' : proj.name
             desc = proj.ext.desc
             licenses = ['GPL-2.0+CE']
             vcsUrl = "${projectUrl}.git"
@@ -96,6 +97,12 @@ allprojects { proj ->
                 name = proj.version
                 desc = project.ext.desc + ' version ' + project.version
                 released  = new Date()
+                
+                gpg {
+                  sign = true
+                  passphrase = project.hasProperty('bintray.gpg.passphrase') ? project.property('bintray.gpg.passphrase')
+                      : System.getenv('BINTRAY_GPG_PASSPHRASE')
+                }
             }
         }
     }
@@ -103,21 +110,16 @@ allprojects { proj ->
     publishing {
       publications {
         maven(MavenPublication) {
-            from components.java
-            artifact sourcesJar {
+            if (project.name != 'calimero.parent') {
+              from components.java
+              artifact sourcesJar {
                 classifier "sources"
-            }
-            artifact javadocJar {
+              }
+              artifact javadocJar {
                 classifier "javadoc"
+              }
             }
-            if (project.tasks.findByName('testJar')) {
-                artifact testJar {
-                    classifier "tests"
-                }
-                artifact testSourcesJar {
-                    classifier "test-sources"
-                }
-            }
+
             artifactId proj.name == 'calimero.parent' ? 'calimero-parent' : proj.name
             
             if (proj.name == 'calimero-testnetwork') {
