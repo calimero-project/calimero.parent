@@ -76,9 +76,9 @@ allprojects { proj ->
 					   'Url': "${projectUrl}"
 		}
 	}
-
-    wrapper {
-		gradleVersion = '5.0-rc-1'
+    
+	wrapper {
+		gradleVersion = '5.2.1'
     }
     
     bintray {
