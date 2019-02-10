@@ -35,8 +35,8 @@ allprojects { proj ->
 	def packager = 'Calimero Project'
 	def projectUrl = "https://github.com/calimero-project/${project.name}"
 
-	sourceCompatibility = 9
-	targetCompatibility = 9
+	sourceCompatibility = 11
+	targetCompatibility = 11
 
 	compileJava.options.encoding = 'UTF-8'
 	compileTestJava.options.encoding = 'UTF-8'
