@@ -196,6 +196,7 @@
 				<artifactId>maven-javadoc-plugin</artifactId>
 				<version>3.0.1</version>
 				<configuration>
+					<source>8</source> 
 					<overview>src/overview.html</overview>
 					<author>false</author>
 					<quiet>true</quiet>
