@@ -10,16 +10,16 @@ buildscript {
 }
 
 plugins {
-	id 'com.github.ben-manes.versions' version '0.20.0'
-	id "com.github.spotbugs" version "1.6.5"
+	id 'com.github.ben-manes.versions' version '0.21.0'
+	id "com.github.spotbugs" version "2.0.0"
 }
 
 ext.desc = 'Calimero multi-project build'
 
 allprojects { proj ->
     repositories {
-		jcenter()
 		mavenLocal()
+		jcenter()
 		mavenCentral()
 		maven { url 'https://oss.sonatype.org/content/repositories/snapshots' }
     }
@@ -78,7 +78,7 @@ allprojects { proj ->
 	}
     
 	wrapper {
-		gradleVersion = '5.2.1'
+		gradleVersion = '5.5.1'
     }
     
     bintray {
@@ -179,12 +179,12 @@ allprojects { proj ->
 subprojects {
 	apply plugin: 'com.github.spotbugs'
 
-	ext.junitJupiterVersion = '5.4.0'
+	ext.junitJupiterVersion = '5.5.0'
 
 	compileJava.options*.compilerArgs = [
 		'-Xlint:all',
 		'-Xlint:-options',
-		'-Werror'
+//		'-Werror'
 	]
 
 	compileTestJava.options*.compilerArgs = [
@@ -229,7 +229,7 @@ subprojects {
 	}
 
 	dependencies {
-		api 'org.slf4j:slf4j-api:1.8.0-beta2'
+		api 'org.slf4j:slf4j-api:2.0.0-alpha0'
 
 		testImplementation "org.junit.jupiter:junit-jupiter-api:${junitJupiterVersion}"
 		testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:${junitJupiterVersion}"
