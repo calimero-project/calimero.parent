@@ -10,8 +10,8 @@ buildscript {
 }
 
 plugins {
-	id 'com.github.ben-manes.versions' version '0.21.0'
-	id "com.github.spotbugs" version "2.0.0"
+	id 'com.github.ben-manes.versions' version '0.27.0'
+	id "com.github.spotbugs" version "3.0.0"
 }
 
 ext.desc = 'Calimero multi-project build'
@@ -78,7 +78,7 @@ allprojects { proj ->
 	}
     
 	wrapper {
-		gradleVersion = '5.5.1'
+		gradleVersion = '6.0.1'
     }
     
     bintray {
@@ -179,7 +179,7 @@ allprojects { proj ->
 subprojects {
 	apply plugin: 'com.github.spotbugs'
 
-	ext.junitJupiterVersion = '5.5.0'
+	ext.junitJupiterVersion = '5.5.2'
 
 	compileJava.options*.compilerArgs = [
 		'-Xlint:all',
