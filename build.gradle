@@ -10,7 +10,7 @@ buildscript {
 }
 
 plugins {
-	id 'com.github.ben-manes.versions' version '0.27.0'
+	id 'com.github.ben-manes.versions' version '0.28.0'
 	id "com.github.spotbugs" version "3.0.0"
 }
 
@@ -179,7 +179,7 @@ allprojects { proj ->
 subprojects {
 	apply plugin: 'com.github.spotbugs'
 
-	ext.junitJupiterVersion = '5.5.2'
+	ext.junitJupiterVersion = '5.6.0'
 
 	compileJava.options*.compilerArgs = [
 		'-Xlint:all',
@@ -231,9 +231,8 @@ subprojects {
 	dependencies {
 		api 'org.slf4j:slf4j-api:2.0.0-alpha1'
 
-		testImplementation "org.junit.jupiter:junit-jupiter-api:${junitJupiterVersion}"
-		testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:${junitJupiterVersion}"
-		testCompileOnly 'junit:junit:4.12'
+		testImplementation "org.junit.jupiter:junit-jupiter:${junitJupiterVersion}"
+		testCompileOnly 'junit:junit:4.13'
 		testRuntimeOnly "org.junit.vintage:junit-vintage-engine:${junitJupiterVersion}"
 	}
 }
