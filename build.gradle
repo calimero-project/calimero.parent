@@ -78,7 +78,7 @@ allprojects { proj ->
 	}
     
 	wrapper {
-		gradleVersion = '6.0.1'
+		gradleVersion = '6.5'
     }
     
     bintray {
