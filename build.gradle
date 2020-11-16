@@ -10,8 +10,8 @@ buildscript {
 }
 
 plugins {
-	id 'com.github.ben-manes.versions' version '0.34.0'
-	id "com.github.spotbugs" version "4.5.0"
+	id 'com.github.ben-manes.versions' version '0.36.0'
+	id "com.github.spotbugs" version "4.6.0"
 }
 
 ext.desc = 'Calimero multi-project build'
@@ -78,7 +78,7 @@ allprojects { proj ->
 	}
     
 	wrapper {
-		gradleVersion = '6.5'
+		gradleVersion = '6.7'
     }
     
     bintray {
