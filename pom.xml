@@ -199,6 +199,7 @@
 							<Built-By>${packager}</Built-By>
 						</manifestEntries>
 					</archive>
+					<doclint>-missing</doclint>
 				</configuration>
 				<executions>
 					<execution>
