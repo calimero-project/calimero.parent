@@ -1,21 +1,11 @@
 rootProject.name = 'calimero.parent'
 
-include 'calimero-core'
-include 'calimero-tools'
-include 'calimero-device'
-include 'calimero-server'
-include 'calimero-rxtx'
-include 'calimero-testnetwork'
-include 'calimero-gui'
-include 'introduction'
-include 'import-ets-xml'
-
-project(':calimero-core').projectDir = new File('../calimero-core')
-project(':calimero-tools').projectDir = new File('../calimero-tools')
-project(':calimero-device').projectDir = new File('../calimero-device')
-project(':calimero-server').projectDir = new File('../calimero-server')
-project(':calimero-rxtx').projectDir = new File('../calimero-rxtx')
-project(':calimero-testnetwork').projectDir = new File('../calimero-testnetwork')
-project(':calimero-gui').projectDir = new File('../calimero-gui')
-project(':introduction').projectDir = new File('../introduction')
-project(':import-ets-xml').projectDir = new File('../import-ets-xml')
+includeBuild '../calimero-core'
+includeBuild '../calimero-tools'
+includeBuild '../calimero-device'
+includeBuild '../calimero-server'
+includeBuild '../calimero-rxtx'
+includeBuild '../calimero-testnetwork'
+includeBuild '../calimero-gui'
+//includeBuild '../introduction'
+//includeBuild '../import-ets-xml'

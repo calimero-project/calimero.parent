@@ -233,3 +233,9 @@ subprojects {
 		testRuntimeOnly "org.junit.vintage:junit-vintage-engine:${junitJupiterVersion}"
 	}
 }
+
+dependencyUpdates.dependsOn gradle.includedBuilds*.task(':dependencyUpdates')
+
+clean.dependsOn gradle.includedBuilds*.task(':clean')
+
+assemble.dependsOn gradle.includedBuilds*.task(':assemble')
