@@ -2,7 +2,6 @@ buildscript {
 	repositories {
 		mavenCentral()
 		maven { url 'https://oss.sonatype.org/content/repositories/snapshots' }
-		jcenter()
 	}
 	dependencies {
 		classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.5'
@@ -19,7 +18,6 @@ ext.desc = 'Calimero multi-project build'
 allprojects { proj ->
     repositories {
 		mavenLocal()
-		jcenter()
 		mavenCentral()
 		maven { url 'https://oss.sonatype.org/content/repositories/snapshots' }
     }
