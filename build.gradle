@@ -177,7 +177,7 @@ allprojects { proj ->
 subprojects {
 	apply plugin: 'com.github.spotbugs'
 
-	ext.junitJupiterVersion = '5.7.0'
+	ext.junitJupiterVersion = '5.8.0-M1'
 
 	compileJava.options*.compilerArgs = [
 		'-Xlint:all',
@@ -229,7 +229,7 @@ subprojects {
 		api 'org.slf4j:slf4j-api:2.0.0-alpha1'
 
 		testImplementation "org.junit.jupiter:junit-jupiter:${junitJupiterVersion}"
-		testCompileOnly 'junit:junit:4.13.1'
+		testCompileOnly 'junit:junit:4.13.2'
 		testRuntimeOnly "org.junit.vintage:junit-vintage-engine:${junitJupiterVersion}"
 	}
 }
