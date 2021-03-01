@@ -29,7 +29,7 @@ allprojects { proj ->
 	ext.desc = 'Calimero - KNX network library'
 
 	group = 'com.github.calimero'
-	version = '2.5-SNAPSHOT'
+	version = '2.5-M1'
 	def packager = 'Calimero Project'
 	def projectUrl = "https://github.com/calimero-project/${project.name}"
 
