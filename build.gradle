@@ -226,7 +226,7 @@ subprojects {
 	}
 
 	dependencies {
-		api 'org.slf4j:slf4j-api:2.0.0-alpha1'
+		api 'org.slf4j:slf4j-api:1.7.30'
 
 		testImplementation "org.junit.jupiter:junit-jupiter:${junitJupiterVersion}"
 		testCompileOnly 'junit:junit:4.13.2'
