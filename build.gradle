@@ -3,9 +3,6 @@ buildscript {
 		mavenCentral()
 		maven { url 'https://oss.sonatype.org/content/repositories/snapshots' }
 	}
-	dependencies {
-		classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.5'
-	}
 }
 
 plugins {
@@ -24,7 +21,6 @@ allprojects { proj ->
 
 	apply plugin: 'java-library'
     apply plugin: 'maven-publish'
-    apply plugin: 'com.jfrog.bintray'
 
 	ext.desc = 'Calimero - KNX network library'
 
@@ -77,32 +73,6 @@ allprojects { proj ->
     
 	wrapper {
 		gradleVersion = '6.7'
-    }
-    
-    bintray {
-        user = project.hasProperty('bintray.user') ? project.property('bintray.user') : System.getenv('BINTRAY_USER')
-        key = project.hasProperty('bintray.key') ? project.property('bintray.key') : System.getenv('BINTRAY_KEY')
-        publications = ['maven']
-        publish = false
-        dryRun = false
-        pkg {
-            repo = 'calimero'
-            name = proj.name == 'calimero.parent' ? 'calimero-parent' : proj.name
-            desc = proj.ext.desc
-            licenses = ['GPL-2.0+CE']
-            vcsUrl = "${projectUrl}.git"
-            version {
-                name = proj.version
-                desc = project.ext.desc + ' version ' + project.version
-                released  = new Date()
-                
-                gpg {
-                  sign = true
-                  passphrase = project.hasProperty('bintray.gpg.passphrase') ? project.property('bintray.gpg.passphrase')
-                      : System.getenv('BINTRAY_GPG_PASSPHRASE')
-                }
-            }
-        }
     }
 
     publishing {
