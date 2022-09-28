@@ -18,8 +18,8 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<packager>Calimero Project</packager>
 		<slf4j.version>1.7.30</slf4j.version>
-		<junit.jupiter.version>5.8.1</junit.jupiter.version>
-		<maven.surefire.version>3.0.0-M5</maven.surefire.version>
+		<junit.jupiter.version>5.9.1</junit.jupiter.version>
+		<maven.surefire.version>3.0.0-M7</maven.surefire.version>
 	</properties>
 	<scm>
 		<url>https://github.com/calimero-project/calimero.parent.git</url>
@@ -271,7 +271,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-report-plugin</artifactId>
-				<version>3.0.0-M5</version>
+				<version>3.0.0-M7</version>
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
