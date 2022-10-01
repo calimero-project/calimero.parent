@@ -17,7 +17,7 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<packager>Calimero Project</packager>
-		<slf4j.version>1.7.30</slf4j.version>
+		<slf4j.version>1.7.36</slf4j.version>
 		<junit.jupiter.version>5.9.1</junit.jupiter.version>
 		<maven.surefire.version>3.0.0-M7</maven.surefire.version>
 	</properties>
