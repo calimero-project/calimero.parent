@@ -15,8 +15,8 @@ apply plugin: 'maven-publish'
 
 ext.desc = 'Calimero composite build'
 
-sourceCompatibility = 11
-targetCompatibility = 11
+sourceCompatibility = 19
+targetCompatibility = 19
 
 
 dependencyUpdates.dependsOn gradle.includedBuilds*.task(':dependencyUpdates')

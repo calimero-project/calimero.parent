@@ -1,4 +1,4 @@
-rootProject.name = 'calimero.parent'
+rootProject.name = 'calimero.parent-loom'
 
 includeBuild '../calimero-core'
 includeBuild '../calimero-rxtx'
