@@ -337,6 +337,17 @@
 				<updatePolicy>interval:120</updatePolicy>
 			</snapshots>
 		</pluginRepository>
+		<pluginRepository>
+			<releases>
+				<updatePolicy>weekly</updatePolicy>
+			</releases>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+			<id>central</id>
+			<name>Central Repository</name>
+			<url>https://repo.maven.apache.org/maven2</url>
+		</pluginRepository>
 	</pluginRepositories>
 	<distributionManagement>
 		<snapshotRepository>
