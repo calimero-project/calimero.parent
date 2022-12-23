@@ -2,6 +2,8 @@ rootProject.name = 'calimero.parent'
 
 includeBuild '../calimero-core'
 includeBuild '../calimero-rxtx'
+includeBuild '../serial-native'
+includeBuild '../calimero-usb/lib'
 includeBuild '../calimero-tools'
 includeBuild '../calimero-device'
 includeBuild '../calimero-server'
