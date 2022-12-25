@@ -43,6 +43,11 @@
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-jar-plugin</artifactId>
+						<configuration>
+							<archive>
+								<addMavenDescriptor>false</addMavenDescriptor>
+							</archive>
+						</configuration>
 						<executions>
 							<execution>
 								<goals>
@@ -77,6 +82,11 @@
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-jar-plugin</artifactId>
+						<configuration>
+							<archive>
+								<addMavenDescriptor>false</addMavenDescriptor>
+							</archive>
+						</configuration>
 						<executions>
 							<execution>
 								<goals>
@@ -173,6 +183,7 @@
 							<Built-By>${packager}</Built-By>
 							<Url>${project.url}</Url>
 						</manifestEntries>
+						<addMavenDescriptor>false</addMavenDescriptor>
 					</archive>
 					<excludes>
 						<exclude>README.md</exclude>
