@@ -1,10 +1,16 @@
 rootProject.name = 'calimero.parent-loom'
 
-includeBuild '../calimero-core'
-includeBuild '../calimero-rxtx'
-includeBuild '../calimero-tools'
-includeBuild '../calimero-device'
-includeBuild '../calimero-server'
-includeBuild '../calimero-testnetwork'
-includeBuild '../calimero-gui'
-includeBuild '../introduction'
+def safeIncludeBuild(String dir) {
+	if (file(dir).exists()) includeBuild dir
+}
+
+safeIncludeBuild '../calimero-core'
+safeIncludeBuild '../calimero-rxtx'
+safeIncludeBuild '../serial-native'
+safeIncludeBuild '../calimero-usb/lib'
+safeIncludeBuild '../calimero-tools'
+safeIncludeBuild '../calimero-device'
+safeIncludeBuild '../calimero-server'
+safeIncludeBuild '../calimero-testnetwork'
+safeIncludeBuild '../calimero-gui'
+safeIncludeBuild '../introduction'

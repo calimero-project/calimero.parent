@@ -1,17 +1,9 @@
-buildscript {
-	repositories {
-		mavenCentral()
-		maven { url 'https://oss.sonatype.org/content/repositories/snapshots' }
-	}
-}
-
 plugins {
-	id 'com.github.ben-manes.versions' version '0.42.0'
-	id "com.github.spotbugs" version "5.0.12"
+	id 'java-library'
+	id 'com.github.ben-manes.versions' version '0.46.0'
+	id "com.github.spotbugs" version "5.0.14"
+	id 'maven-publish'
 }
-
-apply plugin: 'java-library'
-apply plugin: 'maven-publish'
 
 ext.desc = 'Calimero composite build'
 
@@ -26,3 +18,9 @@ clean.dependsOn gradle.includedBuilds*.task(':clean')
 assemble.dependsOn gradle.includedBuilds*.task(':assemble')
 
 publishToMavenLocal.dependsOn gradle.includedBuilds*.task(':publishToMavenLocal')
+
+tasks.named('wrapper') {
+	gradleVersion='8.1'
+}
+
+wrapper.dependsOn gradle.includedBuilds*.task(':wrapper')
