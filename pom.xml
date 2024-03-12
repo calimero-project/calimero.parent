@@ -16,6 +16,7 @@
 	</licenses>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<maven.compiler.release>17</maven.compiler.release>
 		<packager>Calimero Project</packager>
 		<junit.jupiter.version>5.10.2</junit.jupiter.version>
 		<maven.surefire.version>3.2.5</maven.surefire.version>
@@ -167,10 +168,6 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>3.12.1</version>
-				<configuration>
-					<source>17</source>
-					<target>17</target>
-				</configuration>
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
