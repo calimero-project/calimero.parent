@@ -19,7 +19,7 @@
 		<maven.compiler.release>17</maven.compiler.release>
 		<packager>Calimero Project</packager>
 		<slf4j.version>2.0.12</slf4j.version>
-		<junit.jupiter.version>5.10.2</junit.jupiter.version>
+		<junit.jupiter.version>5.11.0</junit.jupiter.version>
 		<maven.surefire.version>3.2.5</maven.surefire.version>
 	</properties>
 	<scm>
