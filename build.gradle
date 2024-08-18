@@ -23,7 +23,7 @@ assemble.dependsOn gradle.includedBuilds*.task(':assemble')
 publishToMavenLocal.dependsOn gradle.includedBuilds*.task(':publishToMavenLocal')
 
 tasks.named('wrapper') {
-	gradleVersion='8.9'
+	gradleVersion='8.10'
 }
 
 wrapper.dependsOn gradle.includedBuilds*.task(':wrapper')
