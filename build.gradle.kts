@@ -32,6 +32,6 @@ tasks.named<DefaultTask>("publishToMavenLocal") {
 }
 
 tasks.named<Wrapper>("wrapper") {
-	gradleVersion = "8.11-rc-2"
+	gradleVersion = "8.12.1"
     dependsOn(gradle.includedBuilds.map { it.task(":wrapper") })
 }
