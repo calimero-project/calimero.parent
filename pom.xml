@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>io.calimero</groupId>
 	<artifactId>calimero-parent</artifactId>
-	<version>3.0-SNAPSHOT</version>
+	<version>3.0-M1</version>
 	<packaging>pom</packaging>
 	<name>Calimero Project Parent</name>
 	<description>Parent pom for Calimero modules</description>
