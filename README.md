@@ -1,2 +1,2 @@
 # calimero.parent
-Contains the Maven parent POM and Gradle composite build for the Calimero repositories.
+Contains the Gradle composite build for the Calimero repositories.
