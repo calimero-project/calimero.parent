@@ -2,7 +2,7 @@ import com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask
 
 plugins {
 	`java-library`
-	id("com.github.ben-manes.versions") version "0.54.0"
+	id("com.github.ben-manes.versions") version "0.62.0"
 	id("com.github.spotbugs") version "6.5.6"
 	`maven-publish`
 }
